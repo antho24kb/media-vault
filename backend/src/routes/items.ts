@@ -39,7 +39,7 @@ itemsRouter.get('/', async (req, res) => {
   if (q) {
     params.push(`%${q.toLowerCase()}%`);
     const p = params.length;
-    where.push(`(lower(i.title) LIKE $${p} OR lower(coalesce(i.format,'')) LIKE $${p} OR lower(coalesce(i.catalog_no,'')) LIKE $${p})`);
+    where.push(`(lower(i.title) LIKE $${p} OR lower(coalesce(i.format,'')) LIKE $${p} OR lower(coalesce(i.catalog_no,'')) LIKE $${p} OR lower(coalesce(i.edition,'')) LIKE $${p})`);
   }
   const format = String(req.query.format ?? '').trim();
   if (format) {
@@ -130,7 +130,7 @@ itemsRouter.get('/formats', async (req, res) => {
 });
 
 const EDITABLE = [
-  'type', 'title', 'format', 'year', 'catalog_no', 'barcode', 'location', 'condition', 'notes',
+  'type', 'title', 'format', 'year', 'catalog_no', 'barcode', 'location', 'condition', 'edition', 'notes',
   'cover_url', 'rating', 'description', 'source', 'source_id',
   // physical-collector fields
   'disc_count', 'is_series', 'season_count', 'episode_count', 'season_no',
@@ -190,6 +190,7 @@ itemsRouter.get('/export', async (req, res) => {
     type: i.type,
     title: i.title,
     format: i.format,
+    edition: i.edition,
     year: i.year,
     catalog_no: i.catalog_no,
     barcode: i.barcode,

@@ -17,6 +17,7 @@ German locale uses `;` — that's auto-detected).
 | `type`       | recommended | `movie`, `series`, `game`, `lp`, `single`, `cd`, `console`. A disc format works too: `Blu-ray`, `DVD`, `4K` → treated as a movie and used as the format (write `series` if it's a TV box set). Empty defaults to `movie`. |
 | `year`       | – | Release year (any 4-digit year in the cell is picked up). |
 | `format`     | – | e.g. `Blu-ray`, `4K UHD`, `DVD`; for games the platform (`PS3`, `Xbox 360`…). |
+| `edition`    | – | The physical edition: `Steelbook`, `Collector's`, `Limited`, `Standard`… (also read from `édition` or `ausgabe`). |
 | `tmdb_id`    | – | **Movies:** the TMDB **movie** id. **Series:** the TMDB **TV** id — TMDB keeps movies and series in separate id spaces, so the row's `type` decides which endpoint is used (`/movie/{id}` vs `/tv/{id}`). Either way → exact artwork, rating & description, no guessing. |
 | `season`     | – | **Series only:** which season this physical box is (a number, or `Staffel 3`). Each season box then shows **that season's own poster** instead of the shared series poster. One row per season box you own. |
 | `igdb_id`    | – | **Games:** the IGDB id (same idea). |

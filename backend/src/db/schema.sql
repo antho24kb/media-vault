@@ -84,6 +84,8 @@ ALTER TABLE items ADD COLUMN IF NOT EXISTS value_currency TEXT;
 ALTER TABLE items ADD COLUMN IF NOT EXISTS value_source   TEXT;    -- pricecharting | discogs | manual
 ALTER TABLE items ADD COLUMN IF NOT EXISTS value_manual   BOOLEAN NOT NULL DEFAULT false;
 ALTER TABLE items ADD COLUMN IF NOT EXISTS valued_at      TIMESTAMPTZ;
+-- Edition of the physical release (Steelbook, Collector's, Limited, Standard…).
+ALTER TABLE items ADD COLUMN IF NOT EXISTS edition        TEXT;
 
 -- Instance-wide key/value settings (e.g. the configured shops/marketplaces).
 CREATE TABLE IF NOT EXISTS settings (

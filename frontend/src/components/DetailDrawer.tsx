@@ -24,6 +24,7 @@ type Draft = {
   format: string;
   barcode: string;
   condition: string;
+  edition: string;
   location: string;
   notes: string;
   disc_count: string;
@@ -46,6 +47,7 @@ function toDraft(i: Item): Draft {
     format: i.format ?? '',
     barcode: i.barcode ?? '',
     condition: i.condition ?? '',
+    edition: i.edition ?? '',
     location: i.location ?? '',
     notes: i.notes ?? '',
     disc_count: i.disc_count != null ? String(i.disc_count) : '',
@@ -179,6 +181,7 @@ export function DetailDrawer({ item, cabinets, sourceOn, valueSourceOn, marketpl
         format: d.format || null,
         barcode: d.barcode.trim() || null,
         condition: d.condition || null,
+        edition: d.edition.trim() || null,
         location: d.location || null,
         notes: d.notes || null,
         disc_count: d.disc_count ? parseInt(d.disc_count, 10) : null,
@@ -205,6 +208,7 @@ export function DetailDrawer({ item, cabinets, sourceOn, valueSourceOn, marketpl
 
   const rows: [string, string | null][] = [
     [t('drawer.rowFormat'), item.format],
+    [t('drawer.rowEdition'), item.edition],
     [t('drawer.rowYear'), item.year ? String(item.year) : null],
     [t('drawer.rowRating'), item.rating !== null ? `${Math.round(item.rating)} / 100` : null],
     [t('drawer.rowCatalog'), item.catalog_no],
@@ -361,6 +365,8 @@ export function DetailDrawer({ item, cabinets, sourceOn, valueSourceOn, marketpl
               <div className="field"><label>{t('drawer.condition')}</label>
                 <input value={d.condition} onChange={(e) => set({ condition: e.target.value })} placeholder="loose / CIB / VG+…" /></div>
             </div>
+            <div className="field"><label>{t('drawer.edition')}</label>
+              <input value={d.edition} onChange={(e) => set({ edition: e.target.value })} placeholder="Steelbook / Collector / Standard…" /></div>
             <div className="rowfields">
               <div className="field"><label>{t('drawer.discCount')}</label>
                 <input type="number" min="0" value={d.disc_count} onChange={(e) => set({ disc_count: e.target.value })} /></div>

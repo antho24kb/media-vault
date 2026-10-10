@@ -30,6 +30,7 @@ export interface Item {
   barcode: string | null;
   location: string | null;
   condition: string | null;
+  edition: string | null; // physical edition: Steelbook, Collector's, Limited…
   notes: string | null;
   cover_url: string | null;
   cover_source_url: string | null;

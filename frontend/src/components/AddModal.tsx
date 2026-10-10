@@ -35,7 +35,7 @@ export function AddModal({ open, onClose, onAdded, sources }: Props) {
   const [autoAdd, setAutoAdd] = useState(false);
   const [wishlist, setWishlist] = useState(false);
   const [resolved, setResolved] = useState('');
-  const [manual, setManual] = useState({ title: '', format: '', year: '', barcode: '', condition: '', notes: '' });
+  const [manual, setManual] = useState({ title: '', format: '', edition: '', year: '', barcode: '', condition: '', notes: '' });
   const [steamId, setSteamId] = useState('');
   const [consoleCounts, setConsoleCounts] = useState<Record<string, number>>({});
   const [busyConsole, setBusyConsole] = useState<string | null>(null);
@@ -57,7 +57,7 @@ export function AddModal({ open, onClose, onAdded, sources }: Props) {
       setAutoAdd(false);
       setWishlist(false);
       setResolved('');
-      setManual({ title: '', format: '', year: '', barcode: '', condition: '', notes: '' });
+      setManual({ title: '', format: '', edition: '', year: '', barcode: '', condition: '', notes: '' });
       setCheckText('');
       setCheckResults([]);
       setCheckSummary(null);
@@ -173,6 +173,7 @@ export function AddModal({ open, onClose, onAdded, sources }: Props) {
           type,
           title,
           format: manual.format.trim() || undefined,
+          edition: manual.edition.trim() || undefined,
           year: manual.year ? parseInt(manual.year, 10) : undefined,
           barcode: manual.barcode.replace(/\D/g, '') || undefined,
           condition: manual.condition.trim() || undefined,
@@ -181,7 +182,7 @@ export function AddModal({ open, onClose, onAdded, sources }: Props) {
         },
         title
       );
-      if (ok) setManual({ title: '', format: '', year: '', barcode: '', condition: '', notes: '' });
+      if (ok) setManual({ title: '', format: '', edition: '', year: '', barcode: '', condition: '', notes: '' });
     } finally {
       setBusy(false);
     }
@@ -535,6 +536,10 @@ export function AddModal({ open, onClose, onAdded, sources }: Props) {
                   <label>{t('drawer.year')}</label>
                   <input type="number" value={manual.year} onChange={(e) => setManual({ ...manual, year: e.target.value })} />
                 </div>
+              </div>
+              <div className="field">
+                <label>{t('drawer.edition')}</label>
+                <input value={manual.edition} onChange={(e) => setManual({ ...manual, edition: e.target.value })} placeholder="Steelbook / Collector / Standard…" />
               </div>
               <div className="rowfields">
                 <div className="field" style={{ flex: 2 }}>

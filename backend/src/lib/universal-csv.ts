@@ -10,6 +10,7 @@ export interface UniversalRow {
   type: MediaType;
   title: string;
   format: string | null;
+  edition: string | null; // Steelbook, Collector's, Limited…
   year: number | null;
   catalog_no: string | null;
   notes: string | null;
@@ -102,6 +103,7 @@ export function parseUniversalCsv(text: string): UniversalRow[] {
       type,
       title,
       format,
+      edition: clean(r['edition']) ?? clean(r['édition']) ?? clean(r['ausgabe']),
       year: toYear(r['year'] ?? r['jahr'] ?? r['release']),
       catalog_no: clean(r['barcode']) ?? clean(r['ean']) ?? clean(r['catalog_no']) ?? clean(r['asin']),
       notes: clean(r['notes']) ?? clean(r['note']) ?? clean(r['notizen']),
